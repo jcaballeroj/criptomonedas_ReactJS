@@ -48,7 +48,6 @@ function App() {
       </div>
       <div>
         <Heading>Cotiza Criptomonedas al Instante</Heading>
-
         <Formulario />
       </div>
     </Container>
