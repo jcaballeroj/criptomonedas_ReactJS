@@ -25,7 +25,7 @@ const Formulario = () => {
 
     //state del listado de criptomonedas para
     const [listacripto, guardarCriptomonedas] = useState([]);
-
+    const [error, guardarError] = useState(false);
     const MONEDAS = [
         { codigo:'USD', nombre: 'Dolar Estadounidense' },
         { codigo:'COP', nombre: 'Peso Colombiano' },
@@ -50,8 +50,23 @@ const Formulario = () => {
         consultarAPI();
     },[])
 
+    //cuando el usuario hace submit
+    const cotizarMoneda = e =>{
+        e.preventDefault();
+
+        if(moneda === '' || criptomoneda === '') {
+            guardarError(true);
+            return;
+        }
+        //pasar los datos al componente principal
+        guardarError(false);
+    }
+
     return ( 
-        <form>
+        <form
+            onSubmit={cotizarMoneda}
+        >
+            {error ? 'Hay un error ' : null}
             <SelectMonedas/>
             <SelectCriptomoneda/>
             <Boton
